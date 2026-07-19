@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#151515">
+  <meta name="description" content="Teste de humor breve, educativo e privado.">
+  <meta property="og:title" content="Ubie | Teste de Humor">
+  <meta property="og:description" content="Um check-in breve para compreender mudanças recentes no seu humor.">
+  <meta property="og:type" content="website">
+  <title>Ubie | Teste de Humor</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#app">Ir para o teste</a>
+  <div class="ambient ambient-a" aria-hidden="true"></div>
+  <div class="ambient ambient-b" aria-hidden="true"></div>
+  <div class="dots" aria-hidden="true"></div>
+
+  <header class="header">
+    <button class="brand" type="button" data-go-home aria-label="Ubie Humor — início">
+      <span class="brand-mark" aria-hidden="true"><span></span></span>
+      <span class="brand-name">UBIE</span>
+      <span class="brand-line" aria-hidden="true"></span>
+      <span class="brand-product">HUMOR</span>
+    </button>
+    <button class="ghost-link" type="button" data-open="about-modal">Sobre o teste</button>
+  </header>
+
+  <main id="app" class="shell" tabindex="-1">
+    <section id="home-view" class="view home-view" aria-labelledby="home-title">
+      <div class="eyebrow"><span></span> CHECK-IN EMOCIONAL</div>
+      <h1 id="home-title">Como o seu humor tem se comportado?</h1>
+      <p class="hero-copy">Uma pausa breve e privada para observar mudanças recentes no seu bem-estar emocional.</p>
+
+      <div class="hero-card">
+        <div class="hero-content">
+          <p class="overline">AVALIAÇÃO GUIADA</p>
+          <h2>Entenda os sinais com mais clareza.</h2>
+          <p>Responda pensando em como você esteve nas <strong>últimas duas semanas</strong>. Não existe resposta certa ou errada.</p>
+          <ul class="benefits">
+            <li><span class="check">✓</span><span><strong>Cerca de 3 minutos</strong><small>Uma pergunta por vez</small></span></li>
+            <li><span class="check">✓</span><span><strong>Privado por padrão</strong><small>Nenhuma resposta é enviada</small></span></li>
+            <li><span class="check">✓</span><span><strong>Orientação imediata</strong><small>Um resumo para o próximo passo</small></span></li>
+          </ul>
+        </div>
+        <div class="hero-action">
+          <div class="mood-orb" aria-hidden="true"><span class="orb-glow"></span><span class="orb-face"><i></i><b></b></span></div>
+          <button id="start-btn" class="button button-primary button-large" type="button">Começar avaliação <span>→</span></button>
+          <p class="privacy-note"><span aria-hidden="true">⌾</span> Seus dados ficam neste dispositivo.</p>
+        </div>
+      </div>
+      <p class="medical-note">Este recurso oferece orientação educativa e não realiza diagnóstico. Em uma emergência, procure atendimento presencial imediatamente.</p>
+    </section>
+
+    <section id="quiz-view" class="view quiz-view" aria-labelledby="question-title" hidden>
+      <div class="quiz-meta">
+        <button id="save-exit-btn" class="back-link" type="button">← Sair e continuar depois</button>
+        <span id="progress-copy">1 de 15</span>
+      </div>
+      <div id="progress" class="progress" role="progressbar" aria-label="Progresso" aria-valuemin="1" aria-valuemax="15" aria-valuenow="1"><span></span></div>
+      <article class="question-card">
+        <span id="question-number" class="question-number">01</span>
+        <div class="question-body">
+          <p id="question-context" class="overline">NAS ÚLTIMAS DUAS SEMANAS</p>
+          <h2 id="question-title" tabindex="-1"></h2>
+          <p id="question-help" class="question-help"></p>
+          <div id="answers" class="answers" role="radiogroup" aria-labelledby="question-title"></div>
+          <div id="answer-note" class="answer-note" hidden></div>
+        </div>
+      </article>
+      <div class="quiz-buttons">
+        <button id="previous-btn" class="button button-secondary" type="button">Voltar</button>
+        <button id="next-btn" class="button button-primary" type="button" disabled>Continuar <span>→</span></button>
+      </div>
+      <p id="save-status" class="save-status" role="status" aria-live="polite">Progresso salvo automaticamente</p>
+    </section>
+
+    <section id="result-view" class="view result-view" aria-labelledby="result-title" hidden>
+      <div class="result-heading">
+        <div><div class="eyebrow"><span></span> SEU CHECK-IN</div><h1 id="result-title" tabindex="-1">Seu panorama de humor</h1><p class="hero-copy">Um retrato das respostas que você deu agora — não um diagnóstico.</p></div>
+        <p id="result-date" class="result-date"></p>
+      </div>
+
+      <article id="urgent-card" class="urgent-card" hidden>
+        <span class="urgent-symbol" aria-hidden="true">!</span>
+        <div><p class="overline">ATENÇÃO IMEDIATA</p><h2>Você não precisa atravessar isso sozinho.</h2><p>Você indicou pensamentos de morte ou autoagressão. Fale com alguém de confiança agora. Se houver risco imediato, ligue <strong>192 (SAMU)</strong> ou vá a um pronto atendimento. O <strong>CVV atende pelo 188</strong>, 24 horas.</p></div>
+      </article>
+
+      <div class="result-grid">
+        <article class="score-card">
+          <p class="overline">INTENSIDADE DOS SINAIS DE BAIXO HUMOR</p>
+          <div class="score-line"><div><strong id="score">0</strong><span>/27</span></div><span id="score-label" class="score-label"></span></div>
+          <div class="score-meter"><span id="score-fill"></span></div>
+          <div class="meter-labels"><span>Baixa</span><span>Moderada</span><span>Alta</span></div>
+          <p id="score-text" class="score-text"></p>
+        </article>
+        <article class="insight-card">
+          <p class="overline">LEITURA DO MOMENTO</p>
+          <h2 id="insight-title"></h2>
+          <p id="insight-text"></p>
+          <div id="activation-card" class="activation-card" hidden><span>↗</span><p><strong>Também apareceram sinais de ativação.</strong><br>Energia aumentada, menor necessidade de sono ou impulsividade devem ser relatadas a um profissional.</p></div>
+        </article>
+      </div>
+
+      <article class="steps-card"><p class="overline">PRÓXIMOS PASSOS</p><h2>O que fazer a partir daqui</h2><div id="recommendations" class="recommendations"></div></article>
+      <div class="result-buttons"><button id="print-btn" class="button button-primary" type="button">Imprimir resumo</button><button id="restart-btn" class="button button-secondary" type="button">Refazer avaliação</button></div>
+      <p class="medical-note">Leve este resumo para uma consulta se isso ajudar a explicar o que você vem sentindo.</p>
+    </section>
+  </main>
+
+  <footer class="footer"><p>© <span id="year"></span> Ubie Humor</p><div><button type="button" data-open="privacy-modal">Privacidade</button><button type="button" data-open="about-modal">Aviso de saúde</button></div></footer>
+
+  <div id="resume-modal" class="modal-layer" role="dialog" aria-modal="true" aria-labelledby="resume-title" hidden>
+    <div class="modal">
+      <button class="modal-x" type="button" data-close="resume-modal" aria-label="Fechar">×</button>
+      <p class="overline">BEM-VINDO DE VOLTA</p><h2 id="resume-title">Continuar de onde você parou?</h2><p>Encontramos respostas salvas neste navegador.</p>
+      <button id="resume-option" class="choice selected" type="button"><span class="choice-icon">↗</span><span><strong>Continuar avaliação</strong><small>Retome a última pergunta.</small></span><i></i></button>
+      <button id="new-option" class="choice" type="button"><span class="choice-icon">＋</span><span><strong>Começar novamente</strong><small>Apague as respostas anteriores.</small></span><i></i></button>
+      <div class="modal-buttons"><button class="button button-secondary" type="button" data-close="resume-modal">Agora não</button><button id="resume-confirm" class="button button-primary" type="button">Continuar</button></div>
+    </div>
+  </div>
+
+  <div id="about-modal" class="modal-layer" role="dialog" aria-modal="true" aria-labelledby="about-title" hidden>
+    <div class="modal modal-copy"><button class="modal-x" type="button" data-close="about-modal" aria-label="Fechar">×</button><p class="overline">INFORMAÇÃO IMPORTANTE</p><h2 id="about-title">Sobre esta avaliação</h2><p>O teste organiza sintomas autorrelatados das últimas duas semanas. O resultado não confirma nem descarta depressão, transtorno bipolar ou outra condição.</p><p>Procure um psicólogo ou médico quando os sinais persistirem, causarem sofrimento ou atrapalharem sua rotina. Mudanças intensas ou abruptas também merecem avaliação.</p><div class="callout"><strong>Em risco imediato:</strong> ligue 192 (SAMU), procure um pronto atendimento ou peça ajuda a alguém próximo. Para apoio emocional, ligue 188 (CVV).</div><div class="modal-buttons"><button class="button button-primary" type="button" data-close="about-modal">Entendi</button></div></div>
+  </div>
+
+  <div id="privacy-modal" class="modal-layer" role="dialog" aria-modal="true" aria-labelledby="privacy-title" hidden>
+    <div class="modal modal-copy"><button class="modal-x" type="button" data-close="privacy-modal" aria-label="Fechar">×</button><p class="overline">PRIVACIDADE</p><h2 id="privacy-title">Seus dados ficam com você.</h2><p>As respostas são guardadas somente no armazenamento local deste navegador para permitir que você continue depois. Não há formulário, analytics, banco de dados ou envio para servidores.</p><p>Você pode apagar tudo usando “Refazer avaliação” ou limpando os dados do navegador.</p><div class="modal-buttons"><button class="button button-primary" type="button" data-close="privacy-modal">Fechar</button></div></div>
+  </div>
+
+  <div id="safety-modal" class="modal-layer safety-layer" role="alertdialog" aria-modal="true" aria-labelledby="safety-title" hidden>
+    <div class="modal safety-modal"><span class="urgent-symbol">!</span><p class="overline">SUA SEGURANÇA IMPORTA</p><h2 id="safety-title">Vamos priorizar apoio agora.</h2><p>Se você pensa em se machucar ou não se sente seguro, não fique sozinho. Afaste meios que possam causar dano e procure alguém de confiança.</p><div class="support-grid"><a href="tel:192"><strong>192</strong><span>SAMU · risco imediato</span></a><a href="tel:188"><strong>188</strong><span>CVV · apoio emocional 24h</span></a></div><div class="modal-buttons"><button class="button button-secondary" type="button" data-close="safety-modal">Continuar o teste</button><a class="button button-primary" href="tel:188">Ligar para 188</a></div></div>
+  </div>
+
+  <noscript><div class="noscript">Ative o JavaScript para realizar esta avaliação.</div></noscript>
+</body>
+</html>
